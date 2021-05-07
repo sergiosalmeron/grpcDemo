@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option py_generic_services = true;
+
+package testmodel;
+message IrisData {
+	float SepalLength = 1;
+	float SepalWidth = 2;
+	float PetalLength = 3;
+	float PetalWidth = 4;
+}
+
+message result {
+	enum IrisType {
+		UNKNOWN = 0;
+		SETOSA = 1;
+		VERSICOLOR = 2;
+		VIRGINICA = 3;
+	}
+	IrisType specie = 1;
+}
+
+service GuessType {
+  rpc classify1(IrisData) returns (result);
+  rpc classify2(IrisData) returns (result);
+}
